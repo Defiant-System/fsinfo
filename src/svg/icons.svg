@@ -4,4 +4,7 @@
 		<polygon fill="#333" points="3.3,11.4 4,12.2 9,7.2 9,7.2 9.7,6.5 9,5.8 4,0.8 3.3,1.6 8.3,6.5 "/>
 	</svg>
 
+	@import "icon-padlock.svg"
+	@import "icon-padlock-open.svg"
+
 </svg>
