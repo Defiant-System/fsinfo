@@ -9,32 +9,6 @@ content {
 	padding: 23px 5px 5px 5px;
 	font-size: 13px;
 
-	&.kind-file {}
-	&.kind-_dir {
-		.details .wrapper ul li {
-			&.for-kind-_dir {
-				display: flex;
-			}
-
-			&.for-kind-app {
-				display: none;
-			}
-		}
-	}
-	
-	&.kind-app {
-		.details .wrapper ul li {
-			&.for-kind-app {
-				display: flex;
-			}
-
-			&.for-kind-_dir,
-			&.for-kind-file {
-				display: none;
-			}
-		}
-	}
-
 	[class*="icon-"],
 	[class^="icon-"] {
 		position: relative;
@@ -155,8 +129,8 @@ content {
 				transition: margin-top 350ms ease-in-out;
 
 				li {
+					min-height: 20px;
 					display: flex;
-					padding: 0 0 7px;
 
 					> span {
 						&:nth-child(1) {
@@ -174,6 +148,14 @@ content {
 							white-space: nowrap;
 							text-overflow: ellipsis;
 							padding-right: 1px;
+
+							&.value-lastModified {
+								span {
+									opacity: .65;
+									display: inline-block;
+									margin-left: 3px;
+								}
+							}
 						}
 					}
 
@@ -183,18 +165,9 @@ content {
 						}
 					}
 
-					&.for-kind-app,
-					&.for-kind-_dir {
-						display: none;
-					}
-
-					&.for-kind-file {
-						display: flex;
-					}
-
 					&.divider {
-						padding: 0;
 						margin: 3px 0;
+						min-height: 1px;
 					}
 				}
 

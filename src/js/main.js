@@ -6,6 +6,14 @@ const fsinfo = {
 			content: window.find("content"),
 		};
 
+		// defiant.shell("fs -r ~/Desktop")
+		defiant.shell("fs -r ~/Applications/Calculator")
+		// defiant.shell("fs -r ~/Desktop/coast.jpg")
+			.then(command => {
+				// console.log( command.result.xNode.xml );
+				fsinfo.dispatch({ type: "show-item-info", parsed: command.result });
+			});
+
 		// window height should obey contents height
 		window.height = "auto";
 	},
@@ -18,7 +26,14 @@ const fsinfo = {
 				break;
 			// custom events
 			case "show-item-info":
-				Self.els.content.prop({ className: `kind-${event.parsed.kind}` });
+				Self.els.content.find(".value-name").html(event.parsed.name);
+
+				window.render({
+					template: "general-wrapper",
+					data: event.parsed.xNode,
+					target: Self.els.content.find(".general.wrapper"),
+				});
+
 				console.log(event);
 				break;
 			case "toggle-wrapper":
