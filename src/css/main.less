@@ -9,6 +9,25 @@ content {
 	padding: 23px 5px 5px 5px;
 	font-size: 13px;
 
+	&.kind-file {}
+	&.kind-app {
+		.details {
+			.wrapper {
+				ul {
+					li {
+						&.for-kind-app {
+							display: flex;
+						}
+
+						&.for-kind-file {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
 	[class*="icon-"],
 	[class^="icon-"] {
 		position: relative;
@@ -130,7 +149,7 @@ content {
 
 				li {
 					display: flex;
-					padding: 0 0 5px;
+					padding: 0 0 7px;
 
 					> span {
 						&:nth-child(1) {
@@ -154,6 +173,19 @@ content {
 						> span:nth-child(1) {
 							padding-top: 5px;
 						}
+					}
+
+					&.for-kind-app {
+						display: none;
+					}
+
+					&.for-kind-file {
+						display: flex;
+					}
+
+					&.divider {
+						padding: 0;
+						margin: 3px 0;
 					}
 				}
 
