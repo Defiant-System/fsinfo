@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
 
-	<svg id="icon-chevron-left" viewBox="0 0 13 13">
-		<polygon fill="#333" points="9.2,1.6 8.5,0.8 3.5,5.8 3.5,5.8 2.8,6.5 3.5,7.2 8.5,12.2 9.2,11.4 4.2,6.5 "/>
+	<svg id="icon-chevron-right" viewBox="0 0 13 13">
+		<polygon fill="#333" points="3.3,11.4 4,12.2 9,7.2 9,7.2 9.7,6.5 9,5.8 4,0.8 3.3,1.6 8.3,6.5 "/>
 	</svg>
 
 </svg>
