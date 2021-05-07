@@ -1,0 +1,21 @@
+<Application>
+	<Head>
+		<meta name="id" value="fsinfo"/>
+		<meta name="title" value="File System Item Info" version="1.0 sys"/>
+		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
+		<meta name="license" value="AGPL-3.0"/>
+		<meta name="repository" value="https://github.com/Defiant-System/fsinfo"/>
+		<meta name="width" value="290"/>
+		<meta name="height" value="560"/>
+		<meta name="top" value="50"/>
+		<meta name="left" value="50"/>
+		<meta name="minimize"/>
+		<meta name="maximize" value="disabled"/>
+		<meta name="resize" value="disabled"/>
+		<meta name="script" value="src/js/main.js"/>
+		<meta name="style" value="src/css/main.less"/>
+		<meta name="icons" value="src/svg/icons.svg"/>
+		<meta name="content" value="src/partials/content.htm"/>
+		<meta name="xsl" value="src/partials/templates.xsl"/>
+	</Head>
+</Application>
