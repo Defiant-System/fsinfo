@@ -10,20 +10,27 @@ content {
 	font-size: 13px;
 
 	&.kind-file {}
-	&.kind-app {
-		.details {
-			.wrapper {
-				ul {
-					li {
-						&.for-kind-app {
-							display: flex;
-						}
+	&.kind-_dir {
+		.details .wrapper ul li {
+			&.for-kind-_dir {
+				display: flex;
+			}
 
-						&.for-kind-file {
-							display: none;
-						}
-					}
-				}
+			&.for-kind-app {
+				display: none;
+			}
+		}
+	}
+	
+	&.kind-app {
+		.details .wrapper ul li {
+			&.for-kind-app {
+				display: flex;
+			}
+
+			&.for-kind-_dir,
+			&.for-kind-file {
+				display: none;
 			}
 		}
 	}
@@ -166,6 +173,7 @@ content {
 							overflow: hidden;
 							white-space: nowrap;
 							text-overflow: ellipsis;
+							padding-right: 1px;
 						}
 					}
 
@@ -175,7 +183,8 @@ content {
 						}
 					}
 
-					&.for-kind-app {
+					&.for-kind-app,
+					&.for-kind-_dir {
 						display: none;
 					}
 
