@@ -163,7 +163,7 @@
 						<!-- <option selected="1">Text Edit</option> -->
 						<xsl:for-each select="//Mime/*[@id=current()/@kind]/*">
 							<xsl:variable name="xApp" select="/ledger/Settings/Apps/i[@ns=current()/@ns][@id=current()/@id]"/>
-							<option>
+							<option class="prefix-icon" value="ant:textedit" style="--icon-prefix: url(/app/ant/icons/app-icon-textedit.png);">
 								<xsl:if test="position() = 1"><xsl:attribute name="selected">1</xsl:attribute></xsl:if>
 								<xsl:value-of select="$xApp/@name"/>
 							</option>
@@ -200,8 +200,8 @@
 			<xsl:otherwise>
 				<div class="preview-box preview-icon">
 					<xsl:call-template name="sys:icon-type">
-							<xsl:with-param name="hiRes" select="1"/>
-						</xsl:call-template>
+						<xsl:with-param name="hiRes" select="1"/>
+					</xsl:call-template>
 				</div>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -248,17 +248,25 @@
 			<li class="footer">
 				<div class="option-buttons_">
 					<span>
+						<xsl:if test="@kind = 'app'">
+							<xsl:attribute name="class">disabled_</xsl:attribute>
+						</xsl:if>
 						<span class="icon-plus"></span>
 					</span>
 					<span class="disabled_">
 						<span class="icon-minus"></span>
 					</span>
 					<span>
+						<xsl:if test="@kind = 'app'">
+							<xsl:attribute name="class">disabled_</xsl:attribute>
+						</xsl:if>
 						<span class="icon-action-apply"></span>
 					</span>
 				</div>
 
-				<i class="icon-padlock"></i>
+				<xsl:if test="@kind != 'app'">
+					<i class="icon-padlock"></i>
+				</xsl:if>
 			</li>
 		</ul>
 	</xsl:template>

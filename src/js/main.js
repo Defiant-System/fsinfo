@@ -7,9 +7,9 @@ const fsinfo = {
 		};
 
 		// defiant.shell("fs -r ~/Desktop")
-		defiant.shell("fs -r ~/Applications/Solitaire")
+		// defiant.shell("fs -r ~/Applications/Solitaire")
 		// defiant.shell("fs -r ~/Desktop/coast.jpg")
-		// defiant.shell("fs -r ~/Desktop/file-1.txt")
+		defiant.shell("fs -r ~/Desktop/file-1.txt")
 			.then(command => {
 				fsinfo.dispatch({ type: "show-item-info", parsed: command.result });
 			});
@@ -27,7 +27,7 @@ const fsinfo = {
 			// custom events
 			case "show-item-info":
 				// window title
-				window.title = event.parsed.base;
+				window.title = event.parsed.base +" Info";
 
 				// render content
 				window.render({
