@@ -1,11 +1,40 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+	<xsl:template name="head-content">
+		<div class="icon">
+			<xsl:variable name="itemPath"><xsl:call-template name="sys:get-file-path"/></xsl:variable>
+			<div class="item-icon">
+				<xsl:choose>
+					<xsl:when test="(//Mime/*[@id=current()/@kind]/@preview = 'image' or //Mime/*[@id=current()/@kind]/@preview = 'svg') and substring( @mode, 1, 1 ) != 'l'">
+						<div class="item-image">
+							<xsl:attribute name="style">background-image: url('/fs<xsl:value-of select="$itemPath"/>?w=232&amp;h=148');</xsl:attribute>
+						</div>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="sys:icon-type"/>
+						<xsl:if test="@kind != '_dir' and @kind != 'app'">
+							<span><xsl:call-template name="sys:icon-kind"/></span>
+						</xsl:if>
+					</xsl:otherwise>
+				</xsl:choose>
+			</div>
+		</div>
+		<div class="info">
+			<h2 class="value-name"><xsl:value-of select="@name"/></h2>
+			<h3 class="value-size">
+				<xsl:call-template name="sys:file-size">
+					<xsl:with-param name="bytes" select="@size" />
+					<xsl:with-param name="kind" select="@kind" />
+				</xsl:call-template>
+			</h3>
+		</div>
+	</xsl:template>
+
 	<xsl:template name="general-wrapper">
 		<ul>
 			<li>
 				<span>Kind</span>
 				<span class="value-kind">
-					<xsl:value-of select="@kind"/>
 					<xsl:value-of select="//Mime/*[@id=current()/@kind]/@name"/>
 					<xsl:if test="substring( @mode, 1, 1 ) != 'd'"> file</xsl:if>
 				</span>
@@ -13,10 +42,7 @@
 			<li>
 				<span>Size</span>
 				<span class="value-size">
-					<xsl:call-template name="sys:file-size">
-						<xsl:with-param name="bytes" select="@size" />
-						<xsl:with-param name="kind" select="@kind" />
-					</xsl:call-template>
+					<xsl:value-of select="@size"/> bytes
 				</span>
 			</li>
 			<xsl:if test="@kind = '_dir'">
@@ -34,7 +60,7 @@
 			</xsl:if>
 			<li>
 				<span>Where</span>
-				<span class="value-path">~/Desktop/mp3/song.mp3</span>
+				<span class="value-path">~<xsl:call-template name="sys:get-file-path"/></span>
 			</li>
 			<li>
 				<span>Modified</span>

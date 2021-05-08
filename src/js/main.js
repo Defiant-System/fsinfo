@@ -7,10 +7,9 @@ const fsinfo = {
 		};
 
 		// defiant.shell("fs -r ~/Desktop")
-		defiant.shell("fs -r ~/Applications/Calculator")
-		// defiant.shell("fs -r ~/Desktop/coast.jpg")
+		// defiant.shell("fs -r ~/Applications/Calculator")
+		defiant.shell("fs -r ~/Desktop/coast.jpg")
 			.then(command => {
-				// console.log( command.result.xNode.xml );
 				fsinfo.dispatch({ type: "show-item-info", parsed: command.result });
 			});
 
@@ -26,12 +25,21 @@ const fsinfo = {
 				break;
 			// custom events
 			case "show-item-info":
-				Self.els.content.find(".value-name").html(event.parsed.name);
+				// window title
+				window.title = event.parsed.base;
+				// 
+				// Self.els.content.find(".value-name").html(event.parsed.name);
+
+				window.render({
+					template: "head-content",
+					target: Self.els.content.find(".head"),
+					path: event.parsed.path,
+				});
 
 				window.render({
 					template: "general-wrapper",
-					data: event.parsed.xNode,
 					target: Self.els.content.find(".general.wrapper"),
+					path: event.parsed.path,
 				});
 
 				console.log(event);

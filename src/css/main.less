@@ -6,8 +6,9 @@ content {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	padding: 23px 5px 5px 5px;
+	border-radius: inherit;
 	font-size: 13px;
+	padding: 5px;
 
 	[class*="icon-"],
 	[class^="icon-"] {
@@ -38,14 +39,23 @@ content {
 		height: 85px;
 		margin-bottom: 7px;
 
-		.icon {
+		.item-icon {
 			// background: rgba(0,0,0,.05);
 			width: 85px;
 			height: 85px;
-			border-radius: 7px;
 			margin-right: 5px;
-			padding: 0 5px 5px;
+			padding: 5px;
 			filter: drop-shadow(0 1px 1px rgba(0,0,0,.05));
+
+			.item-image {
+				background-color: rgba(0,0,0,.1);
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: 50% 50%;
+				width: 100%;
+				height: 100%;
+				border-radius: 5px;
+			}
 
 			i {
 				background-size: contain;

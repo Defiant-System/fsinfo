@@ -12,7 +12,6 @@
 		<meta name="minimize"/>
 		<meta name="maximize" value="disabled"/>
 		<meta name="resize" value="disabled"/>
-		<meta name="headless" value="true"/>
 		<meta name="script" value="src/js/main.js"/>
 		<meta name="style" value="src/css/main.less"/>
 		<meta name="icons" value="src/svg/icons.svg"/>
