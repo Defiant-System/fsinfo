@@ -1,5 +1,47 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+	<xsl:template name="content">
+		<div class="head">
+			<xsl:call-template name="head-content"/>
+		</div>
+		<div class="details">
+			
+			<legend class="expanded" data-click="toggle-wrapper">
+				<i class="icon-chevron-right"></i>
+				General
+			</legend>
+			<div class="wrapper general">
+				<xsl:call-template name="general-wrapper"/>
+			</div>
+
+			<legend class="expanded" data-click="toggle-wrapper">
+				<i class="icon-chevron-right"></i>
+				Open this kind with
+			</legend>
+			<div class="wrapper open-with">
+				<xsl:call-template name="open-with-wrapper"/>
+			</div>
+
+			<legend data-click="toggle-wrapper">
+				<i class="icon-chevron-right"></i>
+				Preview
+			</legend>
+			<div class="wrapper preview">
+				<xsl:call-template name="preview-wrapper"/>
+			</div>
+
+			<legend class="expanded" data-click="toggle-wrapper">
+				<i class="icon-chevron-right"></i>
+				Sharing &amp; Permissions
+			</legend>
+			<div class="wrapper sharing">
+				<xsl:call-template name="sharing-wrapper"/>
+			</div>
+
+		</div>
+	</xsl:template>
+
+
 	<xsl:template name="head-content">
 		<div class="icon">
 			<xsl:variable name="itemPath"><xsl:call-template name="sys:get-file-path"/></xsl:variable>
@@ -96,6 +138,20 @@
 	</xsl:template>
 
 
+	<xsl:template name="open-with-wrapper">
+		<ul>
+			<li class="has-selectbox">
+				<span>Apply for all</span>
+				<span>
+					<selectbox>
+						<option selected="1">Text Edit</option>
+					</selectbox>
+				</span>
+			</li>
+		</ul>
+	</xsl:template>
+
+
 	<xsl:template name="preview-wrapper">
 		<xsl:choose>
 			<xsl:when test="//Mime/*[@id=current()/@kind]/@preview = 'image' or //Mime/*[@id=current()/@kind]/@preview = 'svg'">
@@ -119,20 +175,6 @@
 				</pre>
 			</xsl:when>
 		</xsl:choose>
-	</xsl:template>
-
-
-	<xsl:template name="open-with-wrapper">
-		<ul>
-			<li class="has-selectbox">
-				<span>Apply for all</span>
-				<span>
-					<selectbox>
-						<option selected="1">Text Edit</option>
-					</selectbox>
-				</span>
-			</li>
-		</ul>
 	</xsl:template>
 
 

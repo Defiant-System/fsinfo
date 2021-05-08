@@ -32,6 +32,13 @@ const fsinfo = {
 				// Self.els.content.find(".value-name").html(event.parsed.name);
 
 				window.render({
+					template: "content",
+					target: Self.els.content,
+					path: event.parsed.path,
+				});
+
+				/*
+				window.render({
 					template: "head-content",
 					target: Self.els.content.find(".head"),
 					path: event.parsed.path,
@@ -60,6 +67,7 @@ const fsinfo = {
 					target: Self.els.content.find(".wrapper.sharing"),
 					path: event.parsed.path,
 				});
+				*/
 
 				// console.log(event);
 				break;
