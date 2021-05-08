@@ -6,13 +6,20 @@
 			<div class="item-icon">
 				<xsl:choose>
 					<xsl:when test="(//Mime/*[@id=current()/@kind]/@preview = 'image' or //Mime/*[@id=current()/@kind]/@preview = 'svg') and substring( @mode, 1, 1 ) != 'l'">
-						<div class="item-image">
+						<i class="item-image">
 							<xsl:attribute name="style">background-image: url('/fs<xsl:value-of select="$itemPath"/>?w=232&amp;h=148');</xsl:attribute>
-						</div>
+						</i>
+					</xsl:when>
+					<xsl:when test="@kind = 'app'">
+						<i class="app-icon">
+							<xsl:attribute name="style">background-image: url(/app/<xsl:value-of select="@ns"/>/icons/app-icon-<xsl:value-of select="@id"/>.png);</xsl:attribute>
+						</i>
 					</xsl:when>
 					<xsl:otherwise>
-						<xsl:call-template name="sys:icon-type"/>
-						<xsl:if test="@kind != '_dir' and @kind != 'app'">
+						<xsl:call-template name="sys:icon-type">
+							<xsl:with-param name="hiRes" select="1"/>
+						</xsl:call-template>
+						<xsl:if test="@kind != '_dir'">
 							<span><xsl:call-template name="sys:icon-kind"/></span>
 						</xsl:if>
 					</xsl:otherwise>
