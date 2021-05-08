@@ -37,6 +37,7 @@
 		</div>
 	</xsl:template>
 
+
 	<xsl:template name="general-wrapper">
 		<ul>
 			<li>
@@ -49,7 +50,7 @@
 			<li>
 				<span>Size</span>
 				<span class="value-size">
-					<xsl:value-of select="@size"/> bytes
+					<xsl:number value="@size" grouping-size="3" grouping-separator=" "/> bytes
 				</span>
 			</li>
 			<xsl:if test="@kind = '_dir'">
