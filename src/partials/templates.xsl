@@ -7,7 +7,7 @@
 				<xsl:choose>
 					<xsl:when test="(//Mime/*[@id=current()/@kind]/@preview = 'image' or //Mime/*[@id=current()/@kind]/@preview = 'svg') and substring( @mode, 1, 1 ) != 'l'">
 						<i class="item-image">
-							<xsl:attribute name="style">background-image: url('/fs<xsl:value-of select="$itemPath"/>?w=232&amp;h=148');</xsl:attribute>
+							<xsl:attribute name="style">background-image: url(/fs<xsl:value-of select="$itemPath"/>?w=232&amp;h=148);</xsl:attribute>
 						</i>
 					</xsl:when>
 					<xsl:when test="@kind = 'app'">
@@ -75,10 +75,8 @@
 				<span class="value-lastModified"><xsl:call-template name="sys:fileModified"/></span>
 			</li>
 			<li class="divider"></li>
-			
 			<xsl:if test="@kind = 'app'">
 				<xsl:variable name="app" select="/ledger/Settings/Apps/*[@id='calculator']"/>
-
 				<li>
 					<span>Author</span>
 					<span class="value-author"><xsl:value-of select="$app/@author"/></span>
@@ -88,13 +86,108 @@
 					<span class="value-version"><xsl:value-of select="$app/@version"/></span>
 				</li>
 			</xsl:if>
-
 			<xsl:if test="@kind != 'app'">
 				<li>
 					<span>Owner</span>
 					<span class="value-owner"><xsl:value-of select="/ledger/Settings/User/@name"/></span>
 				</li>
 			</xsl:if>
+		</ul>
+	</xsl:template>
+
+
+	<xsl:template name="preview-wrapper">
+		<xsl:choose>
+			<xsl:when test="//Mime/*[@id=current()/@kind]/@preview = 'image' or //Mime/*[@id=current()/@kind]/@preview = 'svg'">
+				<div class="preview-box preview-image">
+					<xsl:attribute name="style">background-image: url(/fs<xsl:call-template name="sys:get-file-path"/>?w=232&amp;h=148);</xsl:attribute>
+				</div>
+			</xsl:when>
+			<xsl:when test="//Mime/*[@id=current()/@kind]/@preview = 'text'">
+				<pre class="preview-box preview-text">
+					<xsl:attribute name="data-path"><xsl:call-template name="sys:get-file-path"/></xsl:attribute>
+					<xsl:choose>
+						<xsl:when test="//dfs/*[@path = $itemPath]">
+							<xsl:value-of select="//dfs/*[@path = $itemPath]" disable-output-escaping="yes"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<svg class="loader" viewBox="25 25 50 50" >
+								<circle class="loader-path" cx="50" cy="50" r="20" />
+							</svg>
+						</xsl:otherwise>
+					</xsl:choose>
+				</pre>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+
+	<xsl:template name="open-with-wrapper">
+		<ul>
+			<li class="has-selectbox">
+				<span>Apply for all</span>
+				<span>
+					<selectbox>
+						<option selected="1">Text Edit</option>
+					</selectbox>
+				</span>
+			</li>
+		</ul>
+	</xsl:template>
+
+
+	<xsl:template name="sharing-wrapper">
+		<ul>
+			<li class="list">
+
+				<div class="list_">
+					<div class="list-header_">
+						<span>Name</span>
+						<span>Privelege</span>
+					</div>
+					<div class="list-body_">
+
+						<div class="list-row_">
+							<span>
+								<i class="icon-user"></i>
+								<span><xsl:value-of select="/ledger/Settings/User/@name"/> (me)</span>
+							</span>
+							<span>
+								<i class="icon-sort"></i>
+								<span>Read &amp; Write</span>
+							</span>
+						</div>
+
+						<div class="list-row_">
+							<span>
+								<i class="icon-group"></i>
+								<span>Everybody</span>
+							</span>
+							<span>
+								<i class="icon-sort"></i>
+								<span>No Access</span>
+							</span>
+						</div>
+
+					</div>
+				</div>
+
+			</li>
+			<li class="footer">
+				<div class="option-buttons_">
+					<span>
+						<span class="icon-plus"></span>
+					</span>
+					<span class="disabled_">
+						<span class="icon-minus"></span>
+					</span>
+					<span>
+						<span class="icon-action-apply"></span>
+					</span>
+				</div>
+
+				<i class="icon-padlock"></i>
+			</li>
 		</ul>
 	</xsl:template>
 

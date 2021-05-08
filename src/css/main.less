@@ -67,7 +67,7 @@ content {
 					height: 90%;
 					background-color: #fff;
 					border: 1px solid #fff;
-					box-shadow: 0 0 0 3px rgba(0,0,0,.1);
+					box-shadow: 0 0 0 2px rgba(0,0,0,.1);
 					border-radius: 5px;
 				}
 			}
@@ -146,8 +146,15 @@ content {
 					transform: rotate(90deg);
 				}
 
+				& + .wrapper.preview .preview-box,
 				& + .wrapper ul {
 					margin-top: 0;
+				}
+
+				& + .wrapper.preview .preview-box.preview-text {
+					.loader {
+						display: block;
+					}
 				}
 			}
 
@@ -164,9 +171,75 @@ content {
 		.wrapper {
 			overflow: hidden;
 
+			&.preview {
+				.preview-box {
+					position: relative;
+					height: 170px;
+					margin: 5px 3px 8px;
+					background: rgba(0,0,0,.05);
+					border-radius: 5px;
+					border: 1px solid rgba(0,0,0,.05);
+					margin-top: -100%;
+					transition: margin-top 350ms ease-in-out;
+
+					&.preview-image {
+						background-size: cover;
+						background-position: 50% 50%;
+						background-repeat: no-repeat;
+					}
+
+					&.preview-text {
+						background: #fff;
+						white-space: normal;
+						font-size: 12px;
+						line-height: 17px;
+						border-color: rgba(0,0,0,.15);
+
+						.loader {
+							display: none;
+						}
+					}
+				}
+			}
+
+			&.sharing ul {
+				padding-bottom: 3px;
+
+				li {
+					padding: 0px 3px;
+
+					&.list {
+						height: 140px;
+					}
+
+					&.footer {
+						position: relative;
+						height: 21px;
+						margin-top: 5px;
+
+						.option-buttons_ {
+							margin: 0;
+
+							> span {
+								width: 27px;
+							}
+						}
+
+						.icon-padlock,
+						.icon-padlock-open {
+							position: absolute;
+							bottom: 0;
+							right: 3px;
+							width: 19px;
+							height: 19px;
+						}
+					}
+				}
+			}
+
 			ul {
-				margin-top: -100%;
 				padding: 5px 0 11px;
+				margin-top: -100%;
 				transition: margin-top 350ms ease-in-out;
 
 				li {
@@ -211,57 +284,39 @@ content {
 						min-height: 1px;
 					}
 				}
-
-				&.preview {
-					li {
-						height: 170px;
-						padding: 0px 3px;
-
-						div {
-							flex: 1;
-							background: rgba(0,0,0,.05);
-							border-radius: 5px;
-							border: 1px solid rgba(0,0,0,.05);
-						}
-					}
-				}
-
-				&.sharing {
-					padding-bottom: 3px;
-
-					li {
-						padding: 0px 3px;
-
-						&.list {
-							height: 140px;
-						}
-
-						&.footer {
-							position: relative;
-							height: 21px;
-							margin-top: 5px;
-
-							.option-buttons_ {
-								margin: 0;
-
-								> span {
-									width: 27px;
-								}
-							}
-
-							.icon-padlock,
-							.icon-padlock-open {
-								position: absolute;
-								bottom: 0;
-								right: 3px;
-								width: 19px;
-								height: 19px;
-							}
-						}
-					}
-				}
 			}
 		}
 	}
 
+}
+
+.loader.paused { display: none; }
+.loader:not(.paused) {
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	height: 40%;
+	width: 40%;
+	transform-origin: center center;
+	animation: rotate 2.5s linear infinite;
+
+	.loader-path {
+		stroke-dasharray: 150, 200;
+		stroke-dashoffset: -10;
+		stroke-linecap: round;
+		stroke: #ddd;
+		stroke-width: 3px;
+		fill: none;
+		animation: dash 1.5s ease-in-out infinite;
+	}
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+	0%   { stroke-dasharray: 1, 200;  stroke-dashoffset: 0; }
+	50%  { stroke-dasharray: 89, 200; stroke-dashoffset: -35; }
+	100% { stroke-dasharray: 89, 200; stroke-dashoffset: -124; }
 }

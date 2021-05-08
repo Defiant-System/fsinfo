@@ -39,11 +39,29 @@ const fsinfo = {
 
 				window.render({
 					template: "general-wrapper",
-					target: Self.els.content.find(".general.wrapper"),
+					target: Self.els.content.find(".wrapper.general"),
 					path: event.parsed.path,
 				});
 
-				console.log(event);
+				window.render({
+					template: "open-with-wrapper",
+					target: Self.els.content.find(".wrapper.open-with"),
+					path: event.parsed.path,
+				});
+
+				window.render({
+					template: "preview-wrapper",
+					target: Self.els.content.find(".wrapper.preview"),
+					path: event.parsed.path,
+				});
+
+				window.render({
+					template: "sharing-wrapper",
+					target: Self.els.content.find(".wrapper.sharing"),
+					path: event.parsed.path,
+				});
+
+				// console.log(event);
 				break;
 			case "toggle-wrapper":
 				event.el.toggleClass("expanded", event.el.hasClass("expanded"));
