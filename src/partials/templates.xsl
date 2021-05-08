@@ -14,15 +14,17 @@
 				<xsl:call-template name="general-wrapper"/>
 			</div>
 
-			<legend class="expanded" data-click="toggle-wrapper">
-				<i class="icon-chevron-right"></i>
-				Open this kind with
-			</legend>
-			<div class="wrapper open-with">
-				<xsl:call-template name="open-with-wrapper"/>
-			</div>
+			<xsl:if test="@kind != '_dir' and @kind != 'app'">
+				<legend class="expanded" data-click="toggle-wrapper">
+					<i class="icon-chevron-right"></i>
+					Open this kind with
+				</legend>
+				<div class="wrapper open-with">
+					<xsl:call-template name="open-with-wrapper"/>
+				</div>
+			</xsl:if>
 
-			<legend data-click="toggle-wrapper">
+			<legend class="expanded2" data-click="toggle-wrapper">
 				<i class="icon-chevron-right"></i>
 				Preview
 			</legend>
@@ -71,10 +73,17 @@
 		<div class="info">
 			<h2 class="value-name"><xsl:value-of select="@name"/></h2>
 			<h3 class="value-size">
-				<xsl:call-template name="sys:file-size">
-					<xsl:with-param name="bytes" select="@size" />
-					<xsl:with-param name="kind" select="@kind" />
-				</xsl:call-template>
+				<xsl:choose>
+					<xsl:when test="@kind = '_dir'">
+						<xsl:call-template name="sys:folder-size"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:call-template name="sys:file-size">
+							<xsl:with-param name="bytes" select="@size" />
+							<xsl:with-param name="kind" select="@kind" />
+						</xsl:call-template>
+					</xsl:otherwise>
+				</xsl:choose>
 			</h3>
 		</div>
 	</xsl:template>
@@ -92,7 +101,14 @@
 			<li>
 				<span>Size</span>
 				<span class="value-size">
-					<xsl:number value="@size" grouping-size="3" grouping-separator=" "/> bytes
+					<xsl:choose>
+						<xsl:when test="@kind = '_dir'">
+							<xsl:number value="sum(.//@size)" grouping-size="3" grouping-separator=" "/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:number value="@size" grouping-size="3" grouping-separator=" "/>
+						</xsl:otherwise>
+					</xsl:choose> bytes
 				</span>
 			</li>
 			<xsl:if test="@kind = '_dir'">
@@ -118,14 +134,14 @@
 			</li>
 			<li class="divider"></li>
 			<xsl:if test="@kind = 'app'">
-				<xsl:variable name="app" select="/ledger/Settings/Apps/*[@id='calculator']"/>
-				<li>
-					<span>Author</span>
-					<span class="value-author"><xsl:value-of select="$app/@author"/></span>
-				</li>
+				<xsl:variable name="xApp" select="/ledger/Settings/Apps/i[@ns=current()/@ns][@id=current()/@id]"/>
 				<li>
 					<span>Version</span>
-					<span class="value-version"><xsl:value-of select="$app/@version"/></span>
+					<span class="value-version"><xsl:value-of select="$xApp/@version"/></span>
+				</li>
+				<li>
+					<span>Author</span>
+					<span class="value-author"><xsl:value-of select="$xApp/@author"/></span>
 				</li>
 			</xsl:if>
 			<xsl:if test="@kind != 'app'">
@@ -181,6 +197,13 @@
 					</xsl:choose>
 				</pre>
 			</xsl:when>
+			<xsl:otherwise>
+				<div class="preview-box preview-icon">
+					<xsl:call-template name="sys:icon-type">
+							<xsl:with-param name="hiRes" select="1"/>
+						</xsl:call-template>
+				</div>
+			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 
