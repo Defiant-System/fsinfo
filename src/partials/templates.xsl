@@ -144,7 +144,14 @@
 				<span>Apply for all</span>
 				<span>
 					<selectbox>
-						<option selected="1">Text Edit</option>
+						<!-- <option selected="1">Text Edit</option> -->
+						<xsl:for-each select="//Mime/*[@id=current()/@kind]/*">
+							<xsl:variable name="xApp" select="/ledger/Settings/Apps/i[@ns=current()/@ns][@id=current()/@id]"/>
+							<option>
+								<xsl:if test="position() = 1"><xsl:attribute name="selected">1</xsl:attribute></xsl:if>
+								<xsl:value-of select="$xApp/@name"/>
+							</option>
+						</xsl:for-each>
 					</selectbox>
 				</span>
 			</li>
