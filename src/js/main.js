@@ -2,14 +2,12 @@
 const fsinfo = {
 	init() {
 		// fast references
-		this.els = {
-			content: window.find("content"),
-		};
+		this.content = window.find("content");
 
 		// defiant.shell("fs -r ~/Desktop")
 		// defiant.shell("fs -r ~/Applications/Solitaire")
-		// defiant.shell("fs -r ~/Desktop/coast.jpg")
-		defiant.shell("fs -r ~/Desktop/file-1.txt")
+		defiant.shell("fs -r ~/Desktop/coast.jpg")
+		// defiant.shell("fs -r ~/Desktop/file-1.txt")
 			.then(command => {
 				fsinfo.dispatch({ type: "show-item-info", parsed: command.result });
 			});
@@ -19,6 +17,7 @@ const fsinfo = {
 	},
 	dispatch(event) {
 		let Self = fsinfo,
+			isOn,
 			el;
 		switch (event.type) {
 			// system events
@@ -32,14 +31,20 @@ const fsinfo = {
 				// render content
 				window.render({
 					template: "content",
-					target: Self.els.content,
+					target: Self.content,
 					path: event.parsed.path,
 				});
 
-				// console.log(event);
+				setTimeout(() => {
+					Self.content.find(".option-buttons_ > span:nth(0)").trigger("mousedown");
+				}, 1000);
 				break;
 			case "toggle-wrapper":
 				event.el.toggleClass("expanded", event.el.hasClass("expanded"));
+				break;
+			case "unlock-actions":
+				isOn = event.el.hasClass("icon-padlock-open");
+				event.el.toggleClass("icon-padlock-open", isOn);
 				break;
 		}
 	}

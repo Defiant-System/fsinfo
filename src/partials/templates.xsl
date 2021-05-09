@@ -248,16 +248,16 @@
 			</li>
 			<li class="footer">
 				<div class="option-buttons_">
-					<span>
+					<span data-menu="sys:select-user">
 						<xsl:if test="@kind = 'app'">
 							<xsl:attribute name="class">disabled_</xsl:attribute>
 						</xsl:if>
 						<span class="icon-plus"></span>
 					</span>
-					<span class="disabled_">
+					<span data-menu="remove-user" class="disabled_">
 						<span class="icon-minus"></span>
 					</span>
-					<span>
+					<span data-menu="apply-action">
 						<xsl:if test="@kind = 'app'">
 							<xsl:attribute name="class">disabled_</xsl:attribute>
 						</xsl:if>
@@ -266,7 +266,7 @@
 				</div>
 
 				<xsl:if test="@kind != 'app'">
-					<i class="icon-padlock"></i>
+					<i data-click="unlock-actions" class="icon-padlock"></i>
 				</xsl:if>
 			</li>
 		</ul>

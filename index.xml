@@ -18,4 +18,6 @@
 		<meta name="content" value="src/partials/content.htm"/>
 		<meta name="xsl" value="src/partials/templates.xsl"/>
 	</Head>
+
+	@import "src/partials/menubar.xml"
 </Application>

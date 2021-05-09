@@ -1,0 +1,6 @@
+<MenuBar>
+	<Menu for="apply-action">
+		<Menu name="Apply to enclosed items"/>
+		<Menu name="Revert Changes"/>
+	</Menu>
+</MenuBar>
