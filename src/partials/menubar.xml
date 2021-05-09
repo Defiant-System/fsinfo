@@ -1,4 +1,6 @@
 <MenuBar>
+	<Menu for="select-user" link="sys:select-user" click="select-sharing-user"/>
+
 	<Menu for="apply-action">
 		<Menu name="Apply to enclosed items"/>
 		<Menu name="Revert Changes"/>

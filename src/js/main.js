@@ -24,6 +24,9 @@ const fsinfo = {
 			case "window.open":
 				break;
 			// custom events
+			case "select-sharing-user":
+				console.log(event);
+				break;
 			case "show-item-info":
 				// window title
 				window.title = event.parsed.base +" Info";
