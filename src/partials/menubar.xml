@@ -1,6 +1,6 @@
 <MenuBar>
 	<Menu for="tmp-select-user">
-		<Menu name="Select User" invoke="users-select-user" click="select-sharing-user"/>
+		<Menu name="Select User" invoke="users.select-user" click="select-sharing-user"/>
 		<Menu type="divider"/>
 		<Menu name="Properties"/>
 	</Menu>

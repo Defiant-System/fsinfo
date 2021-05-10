@@ -248,7 +248,7 @@
 			</li>
 			<li class="footer">
 				<div class="option-buttons_">
-					<span data-menu="sys:users-select-user">
+					<span data-menu="sys:users.select-user">
 						<xsl:if test="@kind = 'app'">
 							<xsl:attribute name="class">disabled_</xsl:attribute>
 						</xsl:if>
