@@ -1,5 +1,9 @@
 <MenuBar>
-	<Menu for="select-user" link="sys:select-user" click="select-sharing-user"/>
+	<Menu for="tmp-select-user">
+		<Menu name="Select User" invoke="users-select-user" click="select-sharing-user"/>
+		<Menu type="divider"/>
+		<Menu name="Properties"/>
+	</Menu>
 
 	<Menu for="apply-action">
 		<Menu name="Apply to enclosed items"/>

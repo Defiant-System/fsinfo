@@ -24,7 +24,7 @@ const fsinfo = {
 			case "window.open":
 				break;
 			// custom events
-			case "select-sharing-user":
+			case "users-select-user":
 				console.log(event);
 				break;
 			case "show-item-info":
