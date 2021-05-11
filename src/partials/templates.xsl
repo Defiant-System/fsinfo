@@ -218,7 +218,7 @@
 						<span>Name</span>
 						<span>Privelege</span>
 					</div>
-					<div class="list-body_" sys-click="select-list-row">
+					<div class="list-body_">
 
 						<div class="list-row_">
 							<span>

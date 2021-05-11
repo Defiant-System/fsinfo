@@ -7,8 +7,8 @@
 			value;
 		switch (event.type) {
 			case "unlock-actions":
-				isOn = event.el.hasClass("icon-padlock-open");
-				event.el.toggleClass("icon-padlock-open", isOn);
+				value = event.el.hasClass("icon-padlock-open");
+				event.el.toggleClass("icon-padlock-open", value);
 				break;
 			case "users.select-user":
 				console.log(event.arg);
