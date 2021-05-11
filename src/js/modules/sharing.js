@@ -3,6 +3,8 @@
 
 {
 	dispatch(event) {
+		let Self = Section.sharing,
+			value;
 		switch (event.type) {
 			case "unlock-actions":
 				isOn = event.el.hasClass("icon-padlock-open");
@@ -15,9 +17,15 @@
 				console.log(event);
 				break;
 			case "set-privelege":
-				// read-write
-				// read-only
-				// no-access
+				value = event.xMenu.getAttribute("name");
+				event.origin.el.nextAll("span").html(value);
+				// handle event argument
+				switch (event.arg) {
+					case "read-write":
+					case "read-only":
+					case "no-access":
+						break;
+				}
 				break;
 		}
 	}

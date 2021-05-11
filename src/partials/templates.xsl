@@ -218,15 +218,15 @@
 						<span>Name</span>
 						<span>Privelege</span>
 					</div>
-					<div class="list-body_">
+					<div class="list-body_" sys-click="select-list-row">
 
 						<div class="list-row_">
 							<span>
 								<i class="icon-user"></i>
 								<span><xsl:value-of select="/ledger/Settings/User/@name"/> (me)</span>
 							</span>
-							<span data-menu="select-privelege">
-								<i class="icon-sort"></i>
+							<span>
+								<i class="icon-sort" data-menu="select-privelege"></i>
 								<span>Read &amp; Write</span>
 							</span>
 						</div>
@@ -236,8 +236,8 @@
 								<i class="icon-group"></i>
 								<span>Everybody</span>
 							</span>
-							<span data-menu="select-privelege">
-								<i class="icon-sort"></i>
+							<span>
+								<i class="icon-sort" data-menu="select-privelege"></i>
 								<span>No Access</span>
 							</span>
 						</div>
