@@ -218,9 +218,9 @@
 						<span>Name</span>
 						<span>Privelege</span>
 					</div>
-					<div class="list-body_">
+					<div class="list-body_" data-click="select-list-row">
 
-						<div class="list-row_">
+						<div class="list-row_" data-id="me">
 							<span>
 								<i class="icon-user"></i>
 								<span><xsl:value-of select="/ledger/Settings/User/@name"/> (me)</span>
@@ -231,7 +231,7 @@
 							</span>
 						</div>
 
-						<div class="list-row_">
+						<div class="list-row_" data-id="everybody">
 							<span>
 								<i class="icon-group"></i>
 								<span>Everybody</span>
@@ -254,7 +254,7 @@
 						</xsl:if>
 						<span class="icon-plus"></span>
 					</span>
-					<span class="disabled1_" data-click="remove-user">
+					<span class="disabled_" data-click="remove-user">
 						<span class="icon-minus"></span>
 					</span>
 					<span data-menu="apply-action">
