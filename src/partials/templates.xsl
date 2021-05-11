@@ -19,7 +19,7 @@
 					<i class="icon-chevron-right"></i>
 					Open this kind with
 				</legend>
-				<div class="wrapper open-with">
+				<div class="wrapper open-with" data-section="sharing">
 					<xsl:call-template name="open-with-wrapper"/>
 				</div>
 			</xsl:if>
@@ -36,7 +36,7 @@
 				<i class="icon-chevron-right"></i>
 				Sharing &amp; Permissions
 			</legend>
-			<div class="wrapper sharing">
+			<div class="wrapper sharing" data-section="sharing">
 				<xsl:call-template name="sharing-wrapper"/>
 			</div>
 
@@ -225,7 +225,7 @@
 								<i class="icon-user"></i>
 								<span><xsl:value-of select="/ledger/Settings/User/@name"/> (me)</span>
 							</span>
-							<span>
+							<span data-menu="select-privelege">
 								<i class="icon-sort"></i>
 								<span>Read &amp; Write</span>
 							</span>
@@ -236,7 +236,7 @@
 								<i class="icon-group"></i>
 								<span>Everybody</span>
 							</span>
-							<span>
+							<span data-menu="select-privelege">
 								<i class="icon-sort"></i>
 								<span>No Access</span>
 							</span>
@@ -254,7 +254,7 @@
 						</xsl:if>
 						<span class="icon-plus"></span>
 					</span>
-					<span data-menu="remove-user" class="disabled_">
+					<span class="disabled1_" data-click="remove-user">
 						<span class="icon-minus"></span>
 					</span>
 					<span data-menu="apply-action">

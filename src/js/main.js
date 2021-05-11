@@ -1,4 +1,9 @@
 
+const Section = {
+	sharing:  @import "modules/sharing.js",
+	openWith: @import "modules/openWith.js",
+};
+
 const fsinfo = {
 	init() {
 		// fast references
@@ -17,16 +22,13 @@ const fsinfo = {
 	},
 	dispatch(event) {
 		let Self = fsinfo,
-			isOn,
+			view,
 			el;
 		switch (event.type) {
 			// system events
 			case "window.open":
 				break;
 			// custom events
-			case "users.select-user":
-				console.log(event);
-				break;
 			case "show-item-info":
 				// window title
 				window.title = event.parsed.base +" Info";
@@ -38,17 +40,19 @@ const fsinfo = {
 					path: event.parsed.path,
 				});
 
-				setTimeout(() => {
-					Self.content.find(".option-buttons_ > span:nth(0)").trigger("mousedown");
-				}, 1000);
+				// setTimeout(() => {
+				// 	Self.content.find(".option-buttons_ > span:nth(0)").trigger("mousedown");
+				// }, 1000);
 				break;
 			case "toggle-wrapper":
 				event.el.toggleClass("expanded", event.el.hasClass("expanded"));
 				break;
-			case "unlock-actions":
-				isOn = event.el.hasClass("icon-padlock-open");
-				event.el.toggleClass("icon-padlock-open", isOn);
-				break;
+			default:
+				// proxy event to section module
+				el = event.target ? $(event.target) : event.el;
+				if (!event.el && event.origin) el = event.origin.el;
+				if (el) view = el.parents("[data-section]").data("section");
+				if (view) Section[view].dispatch(event);
 		}
 	}
 };
