@@ -1,8 +1,8 @@
 <Application>
 	<Head>
 		<meta name="id" value="fsinfo"/>
-		<meta name="title" value="File System Item Info" version="1.0 sys"/>
-		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
+		<meta name="title" value="File System Item Info" version="1.0"/>
+		<meta name="author" value="Hakan Bilgin" namespace="sys"/>
 		<meta name="license" value="AGPL-3.0"/>
 		<meta name="repository" value="https://github.com/Defiant-System/fsinfo"/>
 		<meta name="width" value="300"/>
