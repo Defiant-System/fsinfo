@@ -25,9 +25,6 @@ const fsinfo = {
 			view,
 			el;
 		switch (event.type) {
-			// system events
-			case "window.open":
-				break;
 			// custom events
 			case "show-item-info":
 				// window title
